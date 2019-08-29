@@ -1,0 +1,27 @@
+body{
+    background-color: #f1f1f1;
+    margin:0;
+}
+
+label{
+    display: block;
+}
+
+input{
+    border: none;
+    border-bottom: 1px solid;
+    padding: 3px;
+    margin-bottom: 20px;
+}
+
+.btn{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    display: block;
+}
+
+form{
+    border: 1px solid gray;
+    padding: 100px;
+}

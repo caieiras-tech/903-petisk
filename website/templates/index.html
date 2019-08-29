@@ -8,9 +8,9 @@
     {% else %}
         <h1>Bem-Vindx ao PETISK</h1>
     {% endif %}
-    
+    <h2><a href="/pessoas"> Veja as pessoas cadastradas</a></h2>
     <h2><strong>Cadastre-se para adoção</strong></h2>
-
+    
     <form action="/" method="post">
         {% csrf_token %}
         <label for="nome">Nome:</label>
@@ -50,7 +50,7 @@
         <label for="motivo">Motivo: </label>
         <textarea name="motivo" cols="30" rows="10" required></textarea>
 
-        <input type="submit" value="Cadastrar">     
+        <input class="btn" type="submit" value="Cadastrar">     
     </form>
 
 {% endblock %}

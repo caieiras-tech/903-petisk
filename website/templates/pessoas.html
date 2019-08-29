@@ -1,0 +1,13 @@
+{% extends 'shared/layout.html' %}
+{% load staticfiles %}
+
+{% block conteudo %}
+
+
+<h1>Lista de pessoas cadastradas</h1>
+
+{% for pessoa in pessoas %}
+    <p><strong>{{pessoa.nome}} {{pessoa.sobrenome}}</strong>--> {{pessoa.motivo}}</p>
+{% endfor %}
+
+{% endblock %}

@@ -5,7 +5,6 @@ from website.models import Pessoa
 
 def index(request):
 
-
     if request.method == 'POST':
         pessoa = Pessoa()
         pessoa.nome = request.POST.get('nome')
@@ -26,6 +25,14 @@ def index(request):
         }
         return render(request, 'index.html', contexto)
 
-
-    
+ 
     return render(request, 'index.html')
+
+
+def pessoas(request):
+    pessoas = Pessoa.objects.filter(ativo=True).all()
+    
+    contexto = {
+        'pessoas': pessoas
+    }
+    return render(request, 'pessoas.html', contexto)
