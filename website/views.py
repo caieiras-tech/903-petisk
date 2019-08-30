@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from website.models import Pessoa
+from website.models import Pessoa, Ong
 
 # Create your views here.
 
@@ -36,3 +36,24 @@ def pessoas(request):
         'pessoas': pessoas
     }
     return render(request, 'pessoas.html', contexto)
+
+
+def cadastrar_ong(request):
+    if request.method == 'POST':
+        x = Ong()
+        x.nome_responsavel = request.POST.get('nome_responsavel')
+        x.nome = request.POST.get('nome')
+        x.email = request.POST.get('email')
+        x.str_cep = request.POST.get('str_cep')
+        x.str_numero = request.POST.get('str_numero')
+        x.complemento = request.POST.get('complemento')
+        x.telefone = request.POST.get('telefone')
+        x.horario_funcionamento = request.POST.get('horario_funcionamento')
+        x.observacao = request.POST.get('observacao')
+        x.save()
+
+        contexto = {'msg': 'Parabéns ' + x.nome}
+        return render(request, 'sucesso.html', contexto)
+
+
+    return render(request, 'cadastrar-ong.html')

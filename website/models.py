@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 # Create your models here.
 
@@ -67,3 +68,58 @@ class Pessoa(models.Model):
 
     def __str__(self):
        return self.nome + ' ' + self.sobrenome
+
+
+class Ong(models.Model):
+    nome_responsavel = models.CharField(
+        max_length=255,
+        verbose_name='Nome Responsável'
+    )
+
+    nome = models.CharField(
+        max_length=255,
+        verbose_name='Nome'
+    )
+
+    email = models.CharField(
+        max_length=255,
+        verbose_name='E-mail',
+        unique=True,
+        default=''
+    )
+
+    str_cep = models.CharField(
+        max_length=10,
+        verbose_name='CEP'
+    )
+
+    str_numero = models.CharField(
+        max_length=5,
+        verbose_name='Número Res.'
+    )
+
+    complemento = models.CharField(
+        max_length=255,
+        verbose_name='Complemento',
+        null=True,
+        blank=True
+    )
+
+    telefone = models.CharField(
+        null=True,
+        blank=True,
+        max_length=255,
+        verbose_name='Telefone'
+    )
+
+    horario_funcionamento = models.TextField()
+
+    observacao = models.TextField()
+
+    criado_em = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    ativo = models.BooleanField(
+        default=True
+    )
