@@ -123,3 +123,44 @@ class Ong(models.Model):
     ativo = models.BooleanField(
         default=True
     )
+
+    def __str__(self):
+        return self.nome + ' --- ' + self.nome_responsavel
+
+class Pet(models.Model):
+    PORTE = (
+        ('P', 'Pequeno'),
+        ('M', 'Médio'),
+        ('G', 'Grande'),
+    )
+    nome = models.CharField(
+        max_length=255,
+        verbose_name='Nome'
+    )
+    raca = models.CharField(
+        max_length=255,
+        verbose_name='Raça'
+    )
+    porte = models.CharField(
+        max_length=255,
+        verbose_name='Porte',
+        choices=PORTE
+    )
+    peso = models.FloatField(
+        verbose_name = 'Peso'
+    )
+
+    dono = models.ForeignKey(Pessoa,
+        on_delete=None
+    )
+
+    criado_em = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    ativo = models.BooleanField(
+        default=True
+    )
+
+    def __str__(self):
+        return self.nome + ' --- ' + self.dono.email
