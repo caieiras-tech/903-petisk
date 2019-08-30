@@ -7,6 +7,10 @@ label{
     display: block;
 }
 
+.erro{
+    color: red;
+}
+
 input{
     border: none;
     border-bottom: 1px solid;

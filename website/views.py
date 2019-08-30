@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from website.models import Pessoa, Ong
+from website.models import Pessoa, Ong, Pet
 
 # Create your views here.
 
@@ -21,9 +21,10 @@ def index(request):
         pessoa.save()
 
         contexto = {
-            'nome': pessoa.nome
+            'nome': pessoa.nome,
+            'msg': 'Faça o login para continuar'
         }
-        return render(request, 'index.html', contexto)
+        return render(request, 'login.html', contexto)
 
  
     return render(request, 'index.html')
@@ -57,3 +58,36 @@ def cadastrar_ong(request):
 
 
     return render(request, 'cadastrar-ong.html')
+
+def cadastrar_pet(request):
+    if request.method == 'POST':
+        pessoa = Pessoa.objects.filter(email=request.POST.get('dono_email')).first()
+        p = Pet()
+        p.nome = request.POST.get('nome')
+        p.raca = request.POST.get('raca')
+        p.porte = request.POST.get('porte')
+        p.peso = request.POST.get('peso')
+        p.dono = pessoa
+        p.save()
+        contexto = {'msg': 'Parabéns ' + p.nome + '--- Pet CADASTRADO'}
+        return render(request, 'sucesso.html', contexto)
+    return render(request, 'cadastrar-pet.html')
+
+
+def login(request):
+    if request.method == 'POST':
+        email_input = request.POST.get('email')
+        
+        pessoa = Pessoa.objects.filter(email=email_input).first()
+
+        if pessoa is None:
+            contexto = {'msg': 'Puts, não encontrei'}
+            return render(request, 'login.html', contexto)
+        else:
+            contexto = {'msg': 'Olá ' + pessoa.nome + ' cadastre seu pet:',
+                        'dono': pessoa.email
+            }
+            return render(request, 'cadastrar-pet.html', contexto)
+
+
+    return render(request, 'login.html')

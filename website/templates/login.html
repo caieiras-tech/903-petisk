@@ -1,0 +1,14 @@
+{% extends 'shared/layout.html' %}
+{% load staticfiles %}
+
+{% block conteudo  %}
+    <h1>Faça seu login:</h1>
+    <p class="erro">{{msg}}</p>
+    <form action="/login" method="post">
+        {% csrf_token %}
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" required>
+
+        <input class="btn" type="submit" value="Login">     
+    </form>
+{% endblock %}

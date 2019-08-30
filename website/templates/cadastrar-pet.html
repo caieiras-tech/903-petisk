@@ -1,0 +1,37 @@
+{% extends 'shared/layout.html' %}
+{% load staticfiles %}
+
+{% block conteudo  %}
+
+    <h2><a href="/pessoas/"> Veja as pessoas cadastradas</a></h2>
+    <h2><a href="/ong/cadastrar"> cadastre sua ong</a></h2>
+    
+    <h2><strong>Cadastre seu pet</strong></h2>
+    
+    <h1>{{msg}}</h1>
+    
+    <form action="/pet/cadastrar" method="post">
+        {% csrf_token %}
+
+        <input type="hidden" name="dono_email" value="{{dono}}">
+
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required>
+
+        <label for="">Raça:</label>
+        <input type="text" name="raca" required>
+
+        <label for="porte">Porte: </label>
+        <select name="porte" required>
+            <option value="P">Pequeno</option>
+            <option value="M">Médio</option>
+            <option value="G">Grande</option>
+        </select>
+        
+        <label for="peso">Peso: </label>
+        <input type="text" name="peso">
+
+        <input class="btn" type="submit" value="Cadastrar">     
+    </form>
+
+{% endblock %}

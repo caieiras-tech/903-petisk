@@ -10,7 +10,7 @@
     {% endif %}
     <h2><a href="/pessoas/"> Veja as pessoas cadastradas</a></h2>
     <h2><a href="/ong/cadastrar"> cadastre sua ong</a></h2>
-    <h2><strong>Cadastre-se para adoção</strong></h2>
+    <h2><strong>Cadastre-se para adoção (pessoa)</strong></h2>
     
     <form action="/" method="post">
         {% csrf_token %}
@@ -54,4 +54,5 @@
         <input class="btn" type="submit" value="Cadastrar">     
     </form>
 
+    <p><a href="/login">Login</a></p>
 {% endblock %}
